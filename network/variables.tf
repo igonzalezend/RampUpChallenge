@@ -11,13 +11,18 @@ variable "private_subnet_name" {
 }
 
 variable "public_cidr_blocks" {
-  default = ["10.0.4.0/24", "10.0.5.0/24", "10.0.7.0/24"]
+  type = "list"
 }
 
 variable "private_cidr_block" {
-  default = "10.0.6.0/24"
+  type = "string"
 }
 
 variable "frontend_open_ports" {
-  default = ["80", "3000", "3030"]
+  type = "list"
 }
+
+variable "sg_names" {
+  default = ["IGonzalez_Jenkins_SG", "IGonzalez_BackEnd_SG", "IGonzalez_FrontEnd_SG", "IGonzalez_DB_SG", "IGonzalez_ECS_SG"]
+}
+

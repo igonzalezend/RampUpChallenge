@@ -1,39 +1,11 @@
-resource "aws_security_group_rule" "Jenkins_Internet_Output" {
+resource "aws_security_group_rule" "Internet_Output" {
+  count = "${length(aws_security_group.IGonzalez_SG.*)}"
   type            = "egress"
   from_port       = 0
-  to_port         = 65535
-  protocol        = "all"
+  to_port         = 0
+  protocol        = "-1"
   cidr_blocks = ["0.0.0.0/0"]
 
-  security_group_id = "${aws_security_group.IGonzalez_Jenkins_SG.id}"
+  security_group_id = "${element(aws_security_group.IGonzalez_SG.*.id, count.index)}"
 }
 
-resource "aws_security_group_rule" "Backend_Internet_Output" {
-  type            = "egress"
-  from_port       = 0
-  to_port         = 65535
-  protocol        = "all"
-  cidr_blocks = ["0.0.0.0/0"]
-
-  security_group_id = "${aws_security_group.IGonzalez_BackEnd_SG.id}"
-}
-
-resource "aws_security_group_rule" "Frontend_Internet_Output" {
-  type            = "egress"
-  from_port       = 0
-  to_port         = 65535
-  protocol        = "all"
-  cidr_blocks = ["0.0.0.0/0"]
-
-  security_group_id = "${aws_security_group.IGonzalez_FrontEnd_SG.id}"
-}
-
-resource "aws_security_group_rule" "DB_Internet_Output" {
-  type            = "egress"
-  from_port       = 0
-  to_port         = 65535
-  protocol        = "all"
-  cidr_blocks = ["0.0.0.0/0"]
-
-  security_group_id = "${aws_security_group.IGonzalez_DB_SG.id}"
-}
