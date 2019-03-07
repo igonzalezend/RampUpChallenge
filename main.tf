@@ -1,12 +1,14 @@
 module "network" {
   source = "./network"
 
-  public_cidr_blocks = ["10.0.4.0/24", "10.0.5.0/24", "10.0.7.0/24"]
-  private_cidr_block = "10.0.6.0/24"
+  az1c_cidr_blocks = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+  az1d_cidr_block = "10.0.7.0/24"
   frontend_open_ports = ["80", "3000", "3030"]
+  lb_ports = ["80", "3030"]
 }
-
 module "ecs" {
   source = "./ecs"
+
+  ecs_subnets = ["${module.network.public_subnet_ids}", "${module.network.private_subnet_id}"]
 }
 

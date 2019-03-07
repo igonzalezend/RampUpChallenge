@@ -1,20 +1,20 @@
-resource "aws_subnet" "Public_Subnets" {
-     count = "${length(var.public_subnet_names)}"
+resource "aws_subnet" "IGonzalez_1c_Subnets" {
+     count = "${length(var.az1c_subnet_names)}"
      vpc_id = "${data.aws_vpc.IGonzalez_APareja_VPC.id}"
      availability_zone = "${var.availability_zone[0]}"
-     cidr_block = "${element(var.public_cidr_blocks, count.index)}"
+     cidr_block = "${element(var.az1c_cidr_blocks, count.index)}"
 
      tags {
-          Name = "${element(var.public_subnet_names, count.index)}"
+          Name = "${element(var.az1c_subnet_names, count.index)}"
      }
 }
 
-resource "aws_subnet" "Private_Subnets" {
+resource "aws_subnet" "IGonzalez_1d_Subnets" {
      vpc_id = "${data.aws_vpc.IGonzalez_APareja_VPC.id}"
      availability_zone = "${var.availability_zone[1]}"
-     cidr_block = "${var.private_cidr_block}"
+     cidr_block = "${var.az1d_cidr_block}"
 
      tags {
-          Name = "${var.private_subnet_name}"
+          Name = "${var.az1d_subnet_name}"
      }
 }

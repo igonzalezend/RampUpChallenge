@@ -1,5 +1,3 @@
-
-
 resource "aws_security_group_rule" "Jenkins_Internet_Access" {
   type            = "ingress"
   from_port       = 8080
@@ -7,7 +5,7 @@ resource "aws_security_group_rule" "Jenkins_Internet_Access" {
   protocol        = "tcp"
   cidr_blocks = ["181.57.222.58/32"]
 
-  security_group_id = "${aws_security_group.IGonzalez_Jenkins_SG.id}"
+  security_group_id = "${aws_security_group.IGonzalez_SG.0.id}"
 }
 
 resource "aws_security_group_rule" "Jenkins_SSH_Access" {
@@ -17,7 +15,7 @@ resource "aws_security_group_rule" "Jenkins_SSH_Access" {
   protocol        = "tcp"
   cidr_blocks = ["181.57.222.58/32"]
 
-  security_group_id = "${aws_security_group.IGonzalez_Jenkins_SG.id}"
+  security_group_id = "${aws_security_group.IGonzalez_SG.0.id}"
 }
 
 resource "aws_security_group_rule" "Backend_Access" {
@@ -27,7 +25,8 @@ resource "aws_security_group_rule" "Backend_Access" {
   protocol        = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
-  security_group_id = "${aws_security_group.IGonzalez_BackEnd_SG.id}"
+  security_group_id = "${aws_security_group.IGonzalez_SG.1.id}"
+
 }
 
 resource "aws_security_group_rule" "Backend_SSH_Access" {
@@ -37,7 +36,7 @@ resource "aws_security_group_rule" "Backend_SSH_Access" {
   protocol        = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
-  security_group_id = "${aws_security_group.IGonzalez_BackEnd_SG.id}"
+  security_group_id = "${aws_security_group.IGonzalez_SG.1.id}"
 }
 
 resource "aws_security_group_rule" "Frontend_Access" {
@@ -50,7 +49,7 @@ resource "aws_security_group_rule" "Frontend_Access" {
   protocol        = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
-  security_group_id = "${aws_security_group.IGonzalez_FrontEnd_SG.id}"
+  security_group_id = "${aws_security_group.IGonzalez_SG.2.id}"
 }
 
 resource "aws_security_group_rule" "Frontend_SSH_Access" {
@@ -60,16 +59,28 @@ resource "aws_security_group_rule" "Frontend_SSH_Access" {
   protocol        = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
-  security_group_id = "${aws_security_group.IGonzalez_FrontEnd_SG.id}"
+  security_group_id = "${aws_security_group.IGonzalez_SG.2.id}"
 }
 
 resource "aws_security_group_rule" "DB_Access" {
-
   type            = "ingress"
   from_port       = 3306
   to_port         = 3306
   protocol        = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 
-  security_group_id = "${aws_security_group.IGonzalez_DB_SG.id}"
+  security_group_id = "${aws_security_group.IGonzalez_SG.3.id}"
+}
+
+resource "aws_security_group_rule" "ELB_Access" {
+  
+  count = "${length(var.lb_ports)}"
+  type            = "ingress"
+  from_port       = "${element(var.lb_ports, count.index)}"
+  to_port         = "${element(var.lb_ports, count.index)}"
+  protocol        = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+
+  security_group_id = "${aws_security_group.IGonzalez_SG.5.id}"
+
 }
