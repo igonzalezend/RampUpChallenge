@@ -1,5 +1,5 @@
 variable "availability_zone" {
-  default = ["us-east-1c", "us-east-1d"]
+  default = ["us-east-1a", "us-east-1b"]
 }
 
 variable "az1c_subnet_names" {
@@ -55,4 +55,7 @@ variable "lb_tg_name" {
   default = "IGonzalez-LB-TG"
 }
 
+variable "vpc_cidr_block" {
+  type = "string"
+}
 

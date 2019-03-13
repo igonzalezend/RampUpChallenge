@@ -3,11 +3,17 @@ resource "aws_launch_configuration" "IGonzalez_ECS_Launch_Def" {
   image_id             = "${data.aws_ami.ecs_ami.id}"
   instance_type        = "${var.ecs_instance_type}"
   key_name             = "${var.ecs_key_name}"
-  iam_instance_profile = "${aws_iam_instance_profile.ecs.id}"
+  iam_instance_profile = "${aws_iam_instance_profile.ecs.name}"
 
   associate_public_ip_address = "true"
 
-  user_data                   =  "${template_file.ecs-launch-configuration-user-data.rendered}"
+  user_data                   =  <<-EOF
+                #!/bin/bash
+                  echo ECS_CLUSTER='IGonzalez_ECS_Cluster' >> /etc/ecs/ecs.config;
+                  NO_PROXY=169.254.169.254,169.254.170.2,/var/run/docker.sock;
+                  env NO_PROXY=169.254.169.254,169.254.170.2,/var/run/docker.sock;
+                  export NO_PROXY=169.254.169.254;
+                EOF
 
 
 

@@ -2,7 +2,7 @@ variable "ecs_instance_type" {
   default = "t2.micro"
 }
 variable "ecs_key_name" {
-  default = "IvanGonzalez"
+  default = "IvanGonzalezAWSKeyVirginia"
 }
 
 variable "ecs_cluster_name" {
@@ -18,8 +18,12 @@ variable "ecs_placement_group" {
   default = "IGonzalez_ECS_Placement_Group"
 }
 variable "ecs_subnets" {
-    type = "list"
+  type = "list"
 }
+variable "ecs_lb_frontend_target_group" {
+  type = "string"
+}
+
 
 
 

@@ -6,6 +6,6 @@ resource "aws_lb_listener" "IGonzalez_LB_Listener" {
 
   default_action {
       type = "${var.lb_action}"
-      target_group_arn = "${aws_lb_target_group.IGonzalez_Target_Group.arn}"
+      target_group_arn = "${aws_lb_target_group.IGonzalez_Frontend_Target_Group.arn}"
   }
 }

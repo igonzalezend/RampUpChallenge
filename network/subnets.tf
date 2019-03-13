@@ -1,6 +1,6 @@
 resource "aws_subnet" "IGonzalez_1c_Subnets" {
      count = "${length(var.az1c_subnet_names)}"
-     vpc_id = "${data.aws_vpc.IGonzalez_APareja_VPC.id}"
+     vpc_id = "${aws_vpc.IGonzalez_VPC.id}"
      availability_zone = "${var.availability_zone[0]}"
      cidr_block = "${element(var.az1c_cidr_blocks, count.index)}"
 
@@ -10,7 +10,7 @@ resource "aws_subnet" "IGonzalez_1c_Subnets" {
 }
 
 resource "aws_subnet" "IGonzalez_1d_Subnets" {
-     vpc_id = "${data.aws_vpc.IGonzalez_APareja_VPC.id}"
+     vpc_id = "${aws_vpc.IGonzalez_VPC.id}"
      availability_zone = "${var.availability_zone[1]}"
      cidr_block = "${var.az1d_cidr_block}"
 

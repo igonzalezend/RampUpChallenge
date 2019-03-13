@@ -1,19 +1,29 @@
-resource "aws_route_table" "IGonzalez_RT" {
+resource "aws_route_table" "IGonzalez_RT_RC" {
 
-    vpc_id = "${data.aws_vpc.IGonzalez_APareja_VPC.id}"
+    vpc_id = "${aws_vpc.IGonzalez_VPC.id}"
 
     route {
         cidr_block = "10.0.0.0/0"
-        gateway_id = "${data.aws_internet_gateway.IGonzalez_APareja_IG.id}"
+        gateway_id = "${aws_internet_gateway.IGonzalez_IG.id}"
     }
 }
 
-resource "aws_route_table_association" "mesh-vpc-route-table-association1" {
+resource "aws_route_table_association" "IGonzalez_1c_Subnet" {
     subnet_id      = "${aws_subnet.IGonzalez_1c_Subnets.0.id}"
-    route_table_id = "${aws_route_table.IGonzalez_RT.id}"
+    route_table_id = "${aws_route_table.IGonzalez_RT_RC.id}"
 }   
 
-resource "aws_route_table_association" "mesh-vpc-route-table-association2" {
+resource "aws_route_table_association" "IGonzalez_1d_Subnet" {
     subnet_id      = "${aws_subnet.IGonzalez_1d_Subnets.id}"
-    route_table_id = "${aws_route_table.IGonzalez_RT.id}"
+    route_table_id = "${aws_route_table.IGonzalez_RT_RC.id}"
+}
+
+resource "aws_route_table_association" "IGonzalez_1c_Bastion_Subnet" {
+    subnet_id      = "${aws_subnet.IGonzalez_1c_Subnets.2.id}"
+    route_table_id = "${aws_route_table.IGonzalez_RT_RC.id}"
+}   
+
+resource "aws_route_table_association" "IGonzalez_1c_Private_Subnet" {
+    subnet_id      = "${aws_subnet.IGonzalez_1c_Subnets.1.id}"
+    route_table_id = "${aws_route_table.IGonzalez_RT_RC.id}"
 }

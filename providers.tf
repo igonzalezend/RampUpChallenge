@@ -1,3 +1,3 @@
 provider "aws" {
-  profile  = "IGonzalezRUC"
+  profile  = "IGonzalezPrivate"
 }

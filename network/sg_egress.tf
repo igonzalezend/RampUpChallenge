@@ -1,5 +1,6 @@
 resource "aws_security_group_rule" "Internet_Output" {
-  count = "${length(aws_security_group.IGonzalez_SG.*.id)}"
+  //count = "${length(aws_security_group.IGonzalez_SG.*.id)}"
+  count = 6
   type            = "egress"
   from_port       = 0
   to_port         = 0
@@ -8,7 +9,6 @@ resource "aws_security_group_rule" "Internet_Output" {
 
   security_group_id = "${element(aws_security_group.IGonzalez_SG.*.id, count.index)}"
 
-
-
+  depends_on = ["aws_security_group.IGonzalez_SG"]
 }
 

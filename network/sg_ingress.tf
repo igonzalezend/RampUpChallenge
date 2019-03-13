@@ -6,6 +6,8 @@ resource "aws_security_group_rule" "Jenkins_Internet_Access" {
   cidr_blocks = ["181.57.222.58/32"]
 
   security_group_id = "${aws_security_group.IGonzalez_SG.0.id}"
+
+  depends_on = ["aws_security_group.IGonzalez_SG"]
 }
 
 resource "aws_security_group_rule" "Jenkins_SSH_Access" {
@@ -16,6 +18,8 @@ resource "aws_security_group_rule" "Jenkins_SSH_Access" {
   cidr_blocks = ["181.57.222.58/32"]
 
   security_group_id = "${aws_security_group.IGonzalez_SG.0.id}"
+
+  depends_on = ["aws_security_group.IGonzalez_SG"]
 }
 
 resource "aws_security_group_rule" "Backend_Access" {
@@ -27,6 +31,8 @@ resource "aws_security_group_rule" "Backend_Access" {
 
   security_group_id = "${aws_security_group.IGonzalez_SG.1.id}"
 
+  depends_on = ["aws_security_group.IGonzalez_SG"]
+
 }
 
 resource "aws_security_group_rule" "Backend_SSH_Access" {
@@ -37,6 +43,8 @@ resource "aws_security_group_rule" "Backend_SSH_Access" {
   cidr_blocks = ["0.0.0.0/0"]
 
   security_group_id = "${aws_security_group.IGonzalez_SG.1.id}"
+
+  depends_on = ["aws_security_group.IGonzalez_SG"]
 }
 
 resource "aws_security_group_rule" "Frontend_Access" {
@@ -50,6 +58,8 @@ resource "aws_security_group_rule" "Frontend_Access" {
   cidr_blocks = ["0.0.0.0/0"]
 
   security_group_id = "${aws_security_group.IGonzalez_SG.2.id}"
+
+  depends_on = ["aws_security_group.IGonzalez_SG"]
 }
 
 resource "aws_security_group_rule" "Frontend_SSH_Access" {
@@ -60,6 +70,8 @@ resource "aws_security_group_rule" "Frontend_SSH_Access" {
   cidr_blocks = ["0.0.0.0/0"]
 
   security_group_id = "${aws_security_group.IGonzalez_SG.2.id}"
+
+  depends_on = ["aws_security_group.IGonzalez_SG"]
 }
 
 resource "aws_security_group_rule" "DB_Access" {
@@ -70,6 +82,8 @@ resource "aws_security_group_rule" "DB_Access" {
   cidr_blocks = ["0.0.0.0/0"]
 
   security_group_id = "${aws_security_group.IGonzalez_SG.3.id}"
+
+  depends_on = ["aws_security_group.IGonzalez_SG"]
 }
 
 resource "aws_security_group_rule" "ELB_Access" {
@@ -82,5 +96,7 @@ resource "aws_security_group_rule" "ELB_Access" {
   cidr_blocks = ["0.0.0.0/0"]
 
   security_group_id = "${aws_security_group.IGonzalez_SG.5.id}"
+
+  depends_on = ["aws_security_group.IGonzalez_SG"]
 
 }
