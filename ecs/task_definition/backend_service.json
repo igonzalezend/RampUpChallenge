@@ -1,9 +1,9 @@
 [
     {
         "name": "Backend",
-        "image": "igonzalezend/movie-analyst-api:initial",
+        "image": "igonzalezend/movie-analyst-api:corrected",
         "cpu": 2,
-        "memory": 128,
+        "memory": 256,
         "links": [],
         "portMappings": [
             {

@@ -23,7 +23,9 @@ variable "ecs_subnets" {
 variable "ecs_lb_frontend_target_group" {
   type = "string"
 }
-
+variable "ecs_lb_backend_target_group" {
+  type = "string"
+}
 
 
 

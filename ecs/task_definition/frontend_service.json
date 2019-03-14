@@ -1,9 +1,9 @@
 [
     {
         "name": "Frontend",
-        "image": "igonzalezend/movie-analyst-ui:initial",
+        "image": "igonzalezend/movie-analyst-ui:test",
         "cpu": 2,
-        "memory": 128,
+        "memory": 256,
         "links": [],
         "portMappings": [
             {

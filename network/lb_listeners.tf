@@ -9,3 +9,15 @@ resource "aws_lb_listener" "IGonzalez_LB_Listener" {
       target_group_arn = "${aws_lb_target_group.IGonzalez_Frontend_Target_Group.arn}"
   }
 }
+
+resource "aws_lb_listener" "IGonzalez_LB_Listener_Back" {
+  count = "${length(var.lb_ports_1)}"
+  load_balancer_arn = "${aws_lb.IGonzalez_LB_Back.arn}"
+  port = "${element(var.lb_ports_1, count.index)}"
+  protocol = "${var.lb_protocol}"
+
+  default_action {
+      type = "${var.lb_action}"
+      target_group_arn = "${aws_lb_target_group.IGonzalez_Backend_Target_Group.arn}"
+  }
+}

@@ -7,4 +7,7 @@ output "private_subnet_id" {
 output "frontend_target_group_arn" {
   value = "${aws_lb_target_group.IGonzalez_Frontend_Target_Group.arn}"
 }
+output "backend_target_group_arn" {
+  value = "${aws_lb_target_group.IGonzalez_Backend_Target_Group.arn}"
+}
 

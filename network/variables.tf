@@ -43,6 +43,10 @@ variable "lb_ports" {
   type = "list"
 }
 
+variable "lb_ports_1" {
+  type = "list"
+}
+
 variable "lb_protocol" {
  default = "HTTP" 
 }

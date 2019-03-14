@@ -1,0 +1,11 @@
+- hosts: localhost
+  tasks:
+  - name: Run SQL commands against DB to create table
+    mysql_db:
+      login_host: "terraform-20190313153613160000000001.ckipfp2in8ld.us-east-1.rds.amazonaws.com"
+      login_password: "Crackpokemon94!"
+      login_user: "IGonzalez"
+      login_port: "3306"
+      name: "IGonzalez_DB"
+      state: import
+      target: "./RampUpScript.sql"
